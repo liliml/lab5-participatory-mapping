@@ -7,6 +7,10 @@ I did not use AI or any AI tools for this lab and followed the template instruct
 ## Website Access:
 Access the particpatory map from this link: [https://geog458lab5-c5e4fe153509.herokuapp.com/](https://geog458lab5-c5e4fe153509.herokuapp.com/)
 
+---
+
+## Orginal Instructions For Lab 5:
+
 Bo Zhao | Department of Geography |  University of Washington
 
 ***First release:*** June 17th, 2023 | ***Last Update:*** June 23th, 2023
