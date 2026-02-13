@@ -27,22 +27,28 @@
             width: 350px;
             margin: 10px;
             padding: 10px;
-            background-color: #747474;
+            background-color: #464646;
             border-radius: 5px;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 12px;
             line-height: 1.5;
             color: #ffffff;
             z-index: 1;
+            opacity: 0.7;
         }
         
         #popup {
             padding: 10px;
+            background-color: #464646;
+            color: #ffffff;
+            /* text-wrap: wrap; */
         }
 
         #name {
             width: 100%;
             height: 20px;
+            text-wrap: wrap;
+            /* Referenced this source for text wrap in line above: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap */
             margin-bottom: 10px;
         }
 
@@ -50,11 +56,21 @@
             width: 100%;
             height: 45px;
             margin-bottom: 10px;
+            /* text-wrap: wrap; */
+        }
+
+        #email {
+            width: 100%;
+            height: 20px;
+            text-wrap: wrap;
+            /* Referenced this source for text wrap in line above: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap */
+            margin-bottom: 10px;    
         }
 
         #submit {
             float: right;
         }
+        
     </style>
 </head>
 
@@ -115,6 +131,7 @@
                     'properties': {
                         'contributor': data.rows[i].contributor,
                         'content': data.rows[i].content,
+                        'email':data.rows[i].email //added this line for email field
                     },
                     'geometry': {
                         'type': 'Point',
@@ -149,10 +166,12 @@
             var coordinates = e.features[0].geometry.coordinates;
             var content = e.features[0].properties.content;
             var contributor = e.features[0].properties.contributor;
+            var email = e.features[0].properties.email; //added this line for email field
 
             popup = new maplibregl.Popup()
                 .setLngLat(coordinates)
-                .setHTML("<p><b>" + contributor + "</b> <i>said:</i> " + content + "</p>")
+                .setHTML("<p><b>" + contributor + "email: </b>" + email + "<br><b>" + contributor + "</b> <i>said: </i> " + content + "</p>") //added this line for email field
+                //ORIGINAL LINE: .setHTML("<p><b>" + contributor + "</b> <i>said:</i> " + content + "</p>")
                 .addTo(map);
         });
 
@@ -169,7 +188,8 @@
             }
 
             // Create the HTML content for the contribution popup
-            const popupContent = '<div id="popup"><input type="text" id="name" placeholder="Input your name here..."><input type="text" id="content" placeholder="Input your message here..."><button id="submit">submit</button></div>';
+            // Referenced for email text entry field: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/email
+            const popupContent = '<div id="popup"><input type="text" id="name" placeholder="Input your name here"><input type="email" id="email" pattern=".+@example\.com" placeholder="Input your email here and other contact info"><input type="text" id="content" placeholder="Description and social media post link of location ICE was seen"><button id="submit">submit</button></div>';
 
             // Create a new popup and set its content
             popup = new maplibregl.Popup({ closeOnClick: false })
@@ -186,12 +206,14 @@
         async function submitNewRecord() {
             let contributor = document.getElementById('name').value;
             let content = document.getElementById('content').value;
+            let email = document.getElementById('email').value; //is for added email field in popupContent line above
             let lngLat = popup.getLngLat();
 
             // Create a new URLSearchParams object and append the data to it
             let newRecord = new URLSearchParams();
             newRecord.append('contributor', contributor);
             newRecord.append('content', content);
+            newRecord.append('email', email); //added email field
             newRecord.append('lng', lngLat.lng);
             newRecord.append('lat', lngLat.lat);
 
@@ -215,6 +237,7 @@
                     'properties': {
                         'contributor': contributor,
                         'content': content,
+                        'email':email //added for email
                     },
                     'geometry': {
                         'type': 'Point',
