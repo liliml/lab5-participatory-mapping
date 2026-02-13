@@ -1,4 +1,8 @@
-# Creating Your Own Participatory Mapping Project: A Guide
+# Lab 5: Creating A Participatory Mapping Project
+Lilian Law
+
+## AI Disclosure Policy:
+I did not use AI or any AI tools for this lab and followed the template instructions provided below.
 
 Bo Zhao | Department of Geography |  University of Washington
 
