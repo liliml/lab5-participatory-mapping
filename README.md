@@ -4,6 +4,9 @@ Lilian Law
 ## AI Disclosure Policy:
 I did not use AI or any AI tools for this lab and followed the template instructions provided below.
 
+## Website Access:
+Access the particpatory map from this linnk: [https://geog458lab5-c5e4fe153509.herokuapp.com/](https://geog458lab5-c5e4fe153509.herokuapp.com/)
+
 Bo Zhao | Department of Geography |  University of Washington
 
 ***First release:*** June 17th, 2023 | ***Last Update:*** June 23th, 2023
